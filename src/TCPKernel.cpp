@@ -47,8 +47,6 @@ void TcpKernel::DealData(int clientfd, char *szbuf, int nlen) {
 
 // 注册
 void TcpKernel::RegisterRq(int clientfd, char *szbuf, int nlen) {
-    printf("clientfd:%d RegisterRq\n", clientfd);
-
     STRU_REGISTER_RQ *rq = (STRU_REGISTER_RQ *) szbuf;
     STRU_REGISTER_RS rs;
 
@@ -57,12 +55,12 @@ void TcpKernel::RegisterRq(int clientfd, char *szbuf, int nlen) {
         odb::database *db = m_mysql_pool.get_connection();
         odb::transaction ts(db->begin());
 
-        if (db->query<User>(odb::query<User>::account == rq->m_szAccount).size() == 0) {
-            User user(rq->m_szAccount, rq->m_szPasswd, rq->m_szName, rq->m_szClassName);
+        if (db->query<User>(odb::query<User>::account == rq->m_Account).size() == 0) {
+            User user(rq->m_Account, rq->m_Passwd, rq->m_Name, rq->m_ClassName);
             db->persist(user);
-            rs.m_lResult = Result_Register::register_success;
+            rs.m_Result = Result_Register::register_success;
         } else {
-            rs.m_lResult = Result_Register::account_is_exist;
+            rs.m_Result = Result_Register::account_is_exist;
         }
 
         ts.commit();
@@ -73,8 +71,6 @@ void TcpKernel::RegisterRq(int clientfd, char *szbuf, int nlen) {
 
 // 登录
 void TcpKernel::LoginRq(int clientfd, char *szbuf, int nlen) {
-    printf("clientfd:%d LoginRq\n", clientfd);
-
     STRU_LOGIN_RQ *rq = (STRU_LOGIN_RQ *) szbuf;
     STRU_LOGIN_RS rs;
     cout << "rq:" << *rq << endl;
@@ -82,27 +78,17 @@ void TcpKernel::LoginRq(int clientfd, char *szbuf, int nlen) {
         odb::database *db = m_mysql_pool.get_connection();
         odb::transaction ts(db->begin());
 
-        auto resultUser = db->query<User>(odb::query<User>::account == rq->m_szAccount);
-        if (resultUser.size()) {
-            cout << "res.pass:" << resultUser.begin()->getPasswd() << ", rq.m_szPass:" << rq->m_szPassword << endl;
-            cout << "==:" << (resultUser.begin()->getPasswd() == rq->m_szPassword) << endl;
-            cout << "==:" << (resultUser.begin()->getPasswd().compare(rq->m_szPassword)) << endl;
-        } else {
-            cout << "empty" << endl;
-        }
-
+        auto resultUser = db->query<User>(odb::query<User>::account == rq->m_Account);
         if (resultUser.size() == 0) {     /// ! 不要用empty，始终返回true
-            rs.m_lResult = Result_Login::account_no_exist;
-        } else if (resultUser.begin()->getPasswd() == rq->m_szPassword) {
-
-            rs.m_lResult = Result_Login::login_success;
+            rs.m_Result = Result_Login::account_no_exist;
+        } else if (resultUser.begin()->getPasswd() == rq->m_Passwd) {
+            rs.m_Result = Result_Login::login_success;
         } else {
-            rs.m_lResult = Result_Login::password_error;
+            rs.m_Result = Result_Login::password_error;
         }
 
         ts.commit();
         m_mysql_pool.revert(db);
     }
-    cout << rs << endl;
     m_tcp->SendData(clientfd, (char *) &rs, sizeof(rs));
 }

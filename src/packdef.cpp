@@ -55,20 +55,30 @@ std::ostream &operator<<(std::ostream &out, Result_Login pt) {
 }
 
 std::ostream &operator<<(std::ostream &out, const STRU_LOGIN_RQ &rq) {
-    out << "m_nType:" << rq.m_nType << ",m_szAccount:" << rq.m_szAccount << ",m_szPassword:" << rq.m_szPassword;
+    out << "m_Type:" << rq.m_Type << ",m_Account:" << rq.m_Account << ",m_Passwd:" << rq.m_Passwd;
     return out;
 }
 std::ostream &operator<<(std::ostream &out, const STRU_LOGIN_RS &rs) {
-    out << "m_nType:" << rs.m_nType << ",m_UserID:" << rs.m_UserID << ",m_lResult:" << rs.m_lResult;
+    out << "m_Type:" << rs.m_Type << ",m_UserID:" << rs.m_UserID << ",m_Result:" << rs.m_Result;
     return out;
 }
 std::ostream &operator<<(std::ostream &out, const STRU_REGISTER_RS &rs) {
-    out << "m_nType:" << rs.m_nType << ",m_lResult:" << rs.m_lResult;
+    out << "m_Type:" << rs.m_Type << ",m_Result:" << rs.m_Result;
     return out;
 }
 
 std::ostream &operator<<(std::ostream &os, const STRU_REGISTER_RQ &rq) {
-    os << "m_nType: " << rq.m_nType << " m_szAccount: " << rq.m_szAccount << " m_szPasswd: " << rq.m_szPasswd
-       << " m_szName: " << rq.m_szName << " m_szClassName: " << rq.m_szClassName;
+    os << "m_Type: " << rq.m_Type << " m_Account: " << rq.m_Account << " m_Passwd: " << rq.m_Passwd
+       << " m_Name: " << rq.m_Name << " m_ClassName: " << rq.m_ClassName;
+    return os;
+}
+
+std::ostream &operator<<(std::ostream &os, const STRU_KEEPALIVE_RQ &rq) {
+    os << "m_Type: " << rq.m_Type;
+    return os;
+}
+
+std::ostream &operator<<(std::ostream &os, const STRU_KEEPALIVE_RS &rs) {
+    os << "m_Type: " << rs.m_Type;
     return os;
 }

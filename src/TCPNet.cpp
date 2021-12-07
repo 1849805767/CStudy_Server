@@ -87,6 +87,7 @@ void TcpNet::Epoll_Deal(int ready) {
         int fd = epollarr[i].data.fd;
         if (listenfd == fd) { // 客户端建立链接
             m_pThis->m_threadpool->submit(Accept_Deal);
+
         } else if (epollarr[i].events & EPOLLIN) {
             Deletefd(fd);
             m_pThis->m_threadpool->submit(Info_Recv, fd);
@@ -133,7 +134,7 @@ void TcpNet::Info_Recv(int clientfd) {
             nPackSize -= nRelReadNum;
         }
     }
-    printf("pszbuf = %p \n", pSzBuf);
+//    printf("pszbuf = %p \n", pSzBuf);
     m_pThis->m_kernel->DealData(clientfd, pSzBuf, nOffSet);
     m_pThis->Addfd(clientfd, true);
     delete[]pSzBuf;
@@ -148,3 +149,7 @@ int TcpNet::SendData(int clientfd, char *szbuf, int nlen) {
 }
 
 void TcpNet::UnInitNetWork() { close(listenfd); }
+
+IKernel::~IKernel() {
+
+}
