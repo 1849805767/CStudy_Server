@@ -35,11 +35,11 @@ int TcpNet::InitNetWork() {
         return false;
     }
     int mw_optval;
-    setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, (char *)&mw_optval, sizeof(mw_optval));
+    setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, (char *) &mw_optval, sizeof(mw_optval));
     // 设置非阻塞
     setnonblocking(listenfd);
     //绑定端口号
-    if (bind(listenfd, (struct sockaddr *)&m_sockaddr_server, sizeof(m_sockaddr_server)) == -1) {
+    if (bind(listenfd, (struct sockaddr *) &m_sockaddr_server, sizeof(m_sockaddr_server)) == -1) {
         perror("Bind Socket Error:");
         return false;
     }
@@ -64,6 +64,7 @@ void TcpNet::Addfd(int fd, int enable_et /*是否为边缘触发*/) {
         eptemp.events |= EPOLLET;
     epoll_ctl(epfd, EPOLL_CTL_ADD, fd, &eptemp);
 }
+
 void TcpNet::Deletefd(int fd) { epoll_ctl(epfd, EPOLL_CTL_DEL, fd, 0); }
 
 void TcpNet::EPOLL_Jobs() {
@@ -98,8 +99,8 @@ void TcpNet::Accept_Deal() {
     socklen_t clientsize = sizeof(clientaddr);
     int clientfd;
     char ipstr[_IPSIZE];
-    while (1) {
-        clientfd = accept(m_pThis->listenfd, (sockaddr *)&clientaddr, &clientsize);
+    while (true) {
+        clientfd = accept(m_pThis->listenfd, (sockaddr *) &clientaddr, &clientsize);
         if (clientfd == -1 && errno == EAGAIN) {
             printf("0x%x accept没了\n", std::this_thread::get_id());
             break;
@@ -108,7 +109,8 @@ void TcpNet::Accept_Deal() {
             return;
         }
         m_pThis->Addfd(clientfd, true);
-        printf("Custom Thread TID:0x%x\tClient Ip:%s\tClient PORT:%d\t\n", std::this_thread::get_id(), inet_ntop(AF_INET, &clientaddr.sin_addr.s_addr, ipstr, sizeof(ipstr)),
+        printf("Custom Thread TID:0x%x\tClient Ip:%s\tClient PORT:%d\t\n", std::this_thread::get_id(),
+               inet_ntop(AF_INET, &clientaddr.sin_addr.s_addr, ipstr, sizeof(ipstr)),
                ntohs(clientaddr.sin_port));
     }
 }
@@ -131,13 +133,14 @@ void TcpNet::Info_Recv(int clientfd) {
             nPackSize -= nRelReadNum;
         }
     }
+    printf("pszbuf = %p \n", pSzBuf);
     m_pThis->m_kernel->DealData(clientfd, pSzBuf, nOffSet);
     m_pThis->Addfd(clientfd, true);
-    printf("pszbuf = %p \n", pSzBuf);
+    delete[]pSzBuf;
 }
 
 int TcpNet::SendData(int clientfd, char *szbuf, int nlen) {
-    if (send(clientfd, (const char *)&nlen, sizeof(int), 0) < 0)
+    if (send(clientfd, (const char *) &nlen, sizeof(int), 0) < 0)
         return false;
     if (send(clientfd, szbuf, nlen, 0) < 0)
         return false;

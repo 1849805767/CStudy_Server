@@ -1,5 +1,5 @@
-#ifndef _TCPKERNEL_H
-#define _TCPKERNEL_H
+#ifndef TCPKERNEL_H
+#define TCPKERNEL_H
 
 #include "TCPNet.h"
 #include "mysql_pool.h"

@@ -1,9 +1,0 @@
-# ninja log v5
-2	1438	1638711365620381254	CMakeFiles/CStudy_Server.dir/src/main.cpp.o	d3ef090373d3341e
-1	1553	1638711365736383645	CMakeFiles/CStudy_Server.dir/src/TCPKernel.cpp.o	68cee81e52875c0f
-2	1267	1638711365448377708	CMakeFiles/CStudy_Server.dir/src/mysql_pool.cpp.o	aa8221830c1a3897
-0	21	1638712123495090499	build.ninja	14f5e7d59cb48974
-3	520	1638711364700362285	CMakeFiles/CStudy_Server.dir/src/packdef.cpp.o	4ec069ae259a676c
-1	109	1638711939891642012	CStudy_Server	d982b7933b22a78c
-1	2417	1638711366592401291	CMakeFiles/CStudy_Server.dir/src/TCPNet.cpp.o	586cb6ac249175d3
-1	49	1638712123495090499	build.ninja	14f5e7d59cb48974
