@@ -14,3 +14,8 @@
 2	4181	1639129237860972385	CMakeFiles/CStudy_Server.dir/poco/odb/User-odb.cxx.o	8b4e19279c71b240
 1	4585	1639129238264977106	CMakeFiles/CStudy_Server.dir/src/TCPNet.cpp.o	b35ffdeecff0706f
 4585	4699	1639129238376978414	CStudy_Server	dee008631eaa8551
+2	401	1639132673044267181	CMakeFiles/CStudy_Server.dir/src/packdef.cpp.o	8f492f1b105c5afb
+2	991	1639132673636272785	CMakeFiles/CStudy_Server.dir/src/main.cpp.o	c09d15d13fe6c88d
+1	1378	1639132674020276420	CMakeFiles/CStudy_Server.dir/src/TCPKernel.cpp.o	be599288b1961dea
+1	1850	1639132674492280893	CMakeFiles/CStudy_Server.dir/src/TCPNet.cpp.o	b35ffdeecff0706f
+1850	1962	1639132674604281955	CStudy_Server	dee008631eaa8551

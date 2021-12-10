@@ -40,12 +40,9 @@
 
 enum class PackType : char { // 协议包类型
     NONE,
-    KEEPALIVE_RQ,
-    KEEPALIVE_RS,
-    REGISTER_RQ,
-    REGISTER_RS,
-    LOGIN_RQ,
-    LOGIN_RS,
+    REGISTER_RQ, REGISTER_RS,
+    LOGIN_RQ, LOGIN_RS,
+    KEEPALIVE_RQ, KEEPALIVE_RS, // todo
 };
 
 enum class Result_Register : char { // 注册请求结果
