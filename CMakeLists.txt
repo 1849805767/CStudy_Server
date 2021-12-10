@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21.1)
+cmake_minimum_required(VERSION 3.16)
 project(CStudy_Server)
 
 # 发现一个目录下的所有源代码并将列表存储在一个变量中
