@@ -87,7 +87,7 @@ void TcpNet::Epoll_Deal(int ready) {
         int fd = epollarr[i].data.fd;
         if (listenfd == fd) { // 客户端建立链接
             m_pThis->m_threadpool->submit(Accept_Deal);
-
+            // todo: 加入心跳池
         } else if (epollarr[i].events & EPOLLIN) {
             Deletefd(fd);
             m_pThis->m_threadpool->submit(Info_Recv, fd);
