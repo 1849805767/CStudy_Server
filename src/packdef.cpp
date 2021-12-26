@@ -72,13 +72,3 @@ std::ostream &operator<<(std::ostream &os, const STRU_REGISTER_RQ &rq) {
        << " m_Name: " << rq.m_Name << " m_ClassName: " << rq.m_ClassName;
     return os;
 }
-
-std::ostream &operator<<(std::ostream &os, const STRU_KEEPALIVE_RQ &rq) {
-    os << "m_Type: " << rq.m_Type;
-    return os;
-}
-
-std::ostream &operator<<(std::ostream &os, const STRU_KEEPALIVE_RS &rs) {
-    os << "m_Type: " << rs.m_Type;
-    return os;
-}

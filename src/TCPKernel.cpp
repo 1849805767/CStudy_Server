@@ -79,9 +79,10 @@ void TcpKernel::LoginRq(int clientfd, char *szbuf, int nlen) {
         odb::transaction ts(db->begin());
 
         auto resultUser = db->query<User>(odb::query<User>::account == rq->m_Account);
-        if (resultUser.size() == 0) {     /// ! 不要用empty，始终返回true
+        if (resultUser.empty()) {
             rs.m_Result = Result_Login::account_no_exist;
-        } else if (resultUser.begin()->getPasswd() == rq->m_Passwd) {
+        }
+        else if (resultUser.begin()->getPasswd() == rq->m_Passwd) {
             rs.m_Result = Result_Login::login_success;
         } else {
             rs.m_Result = Result_Login::password_error;

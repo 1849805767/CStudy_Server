@@ -13,7 +13,7 @@
 
 #include <odb/pre.hxx>
 
-#include "../User.h"
+#include "User.h"
 
 #include <memory>
 #include <cstddef>
