@@ -6,12 +6,13 @@ project(CStudy_Server)
 
 file(GLOB POCO_H poco)
 file(GLOB POCO_HXX poco/odb)
+file(GLOB JWT jwt)
 
 file(GLOB POCO_CXX poco/odb/*.cxx)
 file(GLOB CPP_FILES src/*.cpp)
 
 #  头文件搜索路径 g++ -i
-include_directories(./include ${POCO_H} ${POCO_HXX})
+include_directories(./include ${POCO_H} ${POCO_HXX} ${JWT})
 
 # 库文件搜索路径 g++ -L [不建议使用]
 # link_libraries(/usr/lib)
@@ -20,13 +21,13 @@ include_directories(./include ${POCO_H} ${POCO_HXX})
 # add_library(libname [SHARED|STATIC|MODULE][EXCLUDE_FROM_ALL] source1 source2)
 
 # 添加编译参数
-add_compile_options(-w -std=c++14 -O2)
+add_compile_options(-w -std=c++14 -O0)
 
 # 生成可执行文件
 add_executable(${PROJECT_NAME} ${CPP_FILES} ${POCO_CXX})
 
 # 为 target 添加共享库 g++ -l
-target_link_libraries(${PROJECT_NAME} pthread odb odb-mysql)
+target_link_libraries(${PROJECT_NAME} pthread odb odb-mysql crypto)
 
 # 向当前工程添加存放源文件的子目录，并且可以指定中间二进制和目标二进制存放的位置
 # add_subdirectory(source_dir [binary_dir][EXCLUDE_FROM_ALL])
