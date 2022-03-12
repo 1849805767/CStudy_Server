@@ -1,0 +1,17 @@
+# ninja log v5
+1	1323	1647098471150925278	CMakeFiles/CStudy_Server.dir/src/mysql_pool.cpp.o	349af527554a01bf
+2	1854	1647098471682932379	CMakeFiles/CStudy_Server.dir/src/packdef.cpp.o	2c14bf32d293d797
+6	2009	1647098471838934461	CMakeFiles/CStudy_Server.dir/poco/odb/contest-odb.cxx.o	882918b3c80d3b6e
+1	2239	1647098472070937557	CMakeFiles/CStudy_Server.dir/src/main.cpp.o	c3499e6fe73cae74
+1323	2850	1647098472678945672	CMakeFiles/CStudy_Server.dir/poco/odb/user-odb.cxx.o	b455b32e4cc56bf8
+0	3068	1647098472894948554	CMakeFiles/CStudy_Server.dir/src/TCPNet.cpp.o	ca642a3cd6da74fe
+0	3349	1647098473174952290	CMakeFiles/CStudy_Server.dir/src/TCPKernel.cpp.o	9b22bed330506a3a
+3349	3569	1647098473394955226	CStudy_Server	9822373a5f26e79e
+1	3476	1647098720850232452	CMakeFiles/CStudy_Server.dir/src/TCPKernel.cpp.o	9b22bed330506a3a
+3476	3755	1647098721130236136	CStudy_Server	9822373a5f26e79e
+8	2180	1647098844995861790	CMakeFiles/CStudy_Server.dir/poco/odb/user-odb.cxx.o	b455b32e4cc56bf8
+6	2257	1647098845075862838	CMakeFiles/CStudy_Server.dir/src/packdef.cpp.o	2c14bf32d293d797
+3	2784	1647098845603869750	CMakeFiles/CStudy_Server.dir/src/main.cpp.o	c3499e6fe73cae74
+2	3313	1647098846131876664	CMakeFiles/CStudy_Server.dir/src/TCPNet.cpp.o	ca642a3cd6da74fe
+2	3762	1647098846579882528	CMakeFiles/CStudy_Server.dir/src/TCPKernel.cpp.o	9b22bed330506a3a
+3762	3974	1647098846791885303	CStudy_Server	9822373a5f26e79e
